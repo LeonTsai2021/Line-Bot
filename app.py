@@ -38,16 +38,27 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg=event.message.text
-    reply='我看不懂你說甚麼'
+    r='我看不懂你說甚麼'
     
     if msg in ['hi','Hi']: 
-        reply='Hi'
+        r='Hi'
     elif msg=='你吃飯了嗎?':
-        reply='還沒'
+        r='還沒'
+    
+    if '給我貼圖' in msg:
+        sticker_message=StickerSendMessage(
+        package_id='1',
+        sticker_id='1'
+        )
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+
+    return
     
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=reply))
+        TextSendMessage(text=r))
 
 
 if __name__ == "__main__": #確保app.py是被直接執行，而不是載入檔案就馬上執行
