@@ -40,13 +40,14 @@ def handle_message(event):
     msg=event.message.text
     reply='我看不懂你說甚麼'
     
-    if msg=='hi': 
-        r='Hi'
+    if msg in ['hi','Hi']: 
+        reply='Hi'
     elif msg=='你吃飯了嗎?':
-        r='還沒'
+        reply='還沒'
+    
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=s))
+        TextSendMessage(text=reply))
 
 
 if __name__ == "__main__": #確保app.py是被直接執行，而不是載入檔案就馬上執行
